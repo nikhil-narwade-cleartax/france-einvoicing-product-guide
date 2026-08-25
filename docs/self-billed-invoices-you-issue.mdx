@@ -1,0 +1,242 @@
+---
+title: "Self-Billed Invoices You Issue"
+description: "The Self Billed tab in Purchase Documents holds invoices you have raised on behalf of your suppliers."
+---
+
+# 10.1 Overview
+
+The **Self Billed** tab in Purchase Documents holds invoices you have raised on behalf of your suppliers. You are still the buyer and you still pay - but you created the document, so the flow runs in the opposite direction to the rest of this section.
+
+Everything covered so far still applies. This chapter describes only what differs.
+
+![[F62] Self Billed tab](/images/image37.png)
+
+*[F62] Self Billed tab*
+
+# 10.2 What changes, and what does not
+
+| **Question** | **Answer for self-billed invoices you issue** |
+|----|----|
+| **Who issues the invoice** | You, on your supplier's behalf |
+| **Who submits it** | You. These documents start at Pending and have to be submitted. |
+| **Who reports the metadata and submitted status to the PPF** | You, since you issued the document |
+| **Who reviews and decides** | Your supplier. Acknowledge, approve, dispute, suspend or refuse. |
+| **Who resolves a dispute** | You, with a corrective invoice or a credit note |
+| **Who collects and reports payment** | Your supplier. There is no payment action for you here. |
+
+| **NOTE Payment is the one thing that does not invert.** Whoever issued the invoice, the seller is the one who gets paid, so confirming and reporting the collection stays with your supplier. |
+|----|
+
+# 10.3 Getting the documents in
+
+Self-billed invoices you issue are imported like any other document, through the Import UI, API or SFTP.
+
+In the Import UI, choose **Import Purchase Documents** at the document type step. Everything after that - uploading, confirming file details, reviewing errors and committing - works exactly as described in the chapter on importing documents.
+
+# 10.4 What the statuses mean here
+
+The statuses are the same ones described in the status info panel, but the roles are reversed, so read them from your side as the issuer.
+
+**Before it leaves ClearTax**
+
+| **Status** | **What it means to you** |
+|----|----|
+| **Pending** | Created but not yet submitted. Edit it if you need to, then click Submit. |
+| **In Progress** | ClearTax has received the document and is running pre-submission validation. Internal to ClearTax, never sent onward. |
+| **Failed** | Validation failed, or delivery to your supplier's PA failed. Open the detailed view to see which, fix the errors and resubmit. |
+| **Submitted** | Submitted to the ClearTax PA |
+
+**On its way to your supplier**
+
+| **Status** | **What it means to you** |
+|----|----|
+| **Received** | Received by your supplier's PA |
+| **Made Available** | Your supplier's platform has made the invoice available to them for review |
+
+**What your supplier decides**
+
+| **Status** | **What it means to you** |
+|----|----|
+| **Acknowledged** | Your supplier is reviewing the invoice |
+| **Approved** | Your supplier confirms the invoice is correct |
+| **Disputed** | Your supplier flagged a problem. Review the reason and resolve it with a corrective invoice or credit note. |
+| **Suspended** | Your supplier needs additional documents from you. Send them outside ClearTax, then mark the invoice Completed. |
+| **Completed** | You have provided the additional information your supplier asked for. Waiting for them to re-evaluate. |
+| **Cancelled** | Applied automatically to the original once you raise a corrective invoice against it |
+| **Refused** | Your supplier permanently refused the invoice. Terminal - raise a new one if you still need to. |
+| **Rejected** | Your supplier's platform turned the invoice away on arrival. Terminal. |
+
+**Payment**
+
+Payment statuses are set by your supplier when they confirm collection, and appear here so you can see where payment stands. **There is no payment action on your side.**
+
+| **Status** | **What it means to you** |
+|----|----|
+| **Partial Payment Collected** | Your supplier confirmed collection for part of the invoice |
+| **Partial Payment Collected with Failures** | Part was collected, but some collections failed to report to the PPF |
+| **Payment Collected** | Your supplier confirmed payment received. Lifecycle complete. |
+| **Payment Failed** | Reporting a collected payment to the PPF failed |
+
+# 10.5 Summary cards
+
+The Self Billed tab shows seven cards rather than four, because you own the early part of the lifecycle here.
+
+| **Card** | **What it counts** |
+|----|----|
+| **Total Ingested** | Every self-billed document that has entered ClearTax |
+| **Pending** | Imported but not yet submitted - these are waiting on you |
+| **Failed** | Rejected by validation or failed on delivery - these need fixing and resubmitting |
+| **Submitted** | Sent onward from ClearTax |
+| **Rejected** | Turned away by your supplier's platform on arrival |
+| **Refused** | Permanently refused by your supplier |
+| **Payment Collected** | Payment confirmed and reported by your supplier |
+
+| **TIP Start on Pending and Failed.** Those two are the only cards representing work sitting with you. |
+|----|
+
+# 10.6 Government reporting
+
+Because you issued these documents, the reporting obligations sit with you. ClearTax files the invoice's metadata extract and the submitted lifecycle status once delivery to your supplier's PA is acknowledged, exactly as it does for a seller's own invoices.
+
+What your supplier reports from their side is **Rejected** and **Refused**.
+
+# 10.7 What you can do
+
+Select a document and open the **Actions** dropdown. The **Submit** button sits alongside it.
+
+## 10.7.1 The Submit button
+
+**Submit** sends the documents you have selected - validation at the ClearTax PA, then delivery to your supplier over Peppol, then the mandatory filings with the PPF. It applies to documents at **Pending**, and to documents at **Failed** that you have corrected.
+
+Submitting works exactly as described in the chapter on sending an invoice, including what happens at each stage and what to do when a stage fails.
+
+![[F63] Submit button highlighted in blue on invoice selection](/images/image24.png)
+
+*[F63] Submit button highlighted in blue on invoice selection*
+
+## 10.7.2 The Actions dropdown
+
+**Invoice actions** record your decision on the document and exchange it with your supplier.
+
+| **Action** | **What it does** | **Input needed** |
+|----|----|----|
+| **Delete** | Removes a document. Only Pending and Failed documents can be deleted. | None - single click |
+| **Complete** | Tells your supplier you have supplied what they asked for after suspending the invoice | None - single click |
+| **Resolve Dispute** | Starts the corrective invoice or credit note flow for a disputed invoice | A corrective invoice or credit note, imported |
+
+![[F64] Actions dropdown on a self-billed invoice](/images/image59.png)
+
+*[F64] Actions dropdown on a self-billed invoice*
+
+**Export actions** - Email, Print and Download - work as they do elsewhere.
+
+| **WARNING There is no Confirm Payment here.** You are paying, not collecting. Payment is confirmed by your supplier and appears on the invoice as a payment status. |
+|----|
+
+## 10.7.3 What you can do, and when
+
+| **Status**            | **What you can do**                        |
+|-----------------------|--------------------------------------------|
+| **Pending**           | Submit, Delete                             |
+| **Failed**            | Submit (after correcting), Delete          |
+| **Submitted**         | Nothing - in flight                        |
+| **Received**          | Nothing - with your supplier               |
+| **Made Available**    | Nothing - with your supplier               |
+| **Acknowledged**      | Nothing - with your supplier               |
+| **Approved**          | Nothing - your supplier accepted it        |
+| **Disputed**          | Resolve Dispute                            |
+| **Suspended**         | Complete                                   |
+| **Completed**         | Nothing - the next move is your supplier's |
+| **Refused**           | Nothing - terminal                         |
+| **Rejected**          | Nothing - terminal                         |
+| **Payment Collected** | Nothing - terminal                         |
+
+# 10.8 What happens after you submit
+
+Once the invoice reaches your supplier, they decide what to do with it. There are four cases.
+
+| **Case** | **What came back** | **What it means** |
+|----|----|----|
+| **1** | **Approved** | Your supplier accepted the invoice |
+| **2** | **Suspended** | They need supporting documents before deciding |
+| **3** | **Disputed** | They found a problem and want it fixed |
+| **4** | **Refused** or **Rejected** | The invoice is closed |
+
+| **NOTE These are the flows the French specification advises, but what actually reaches you depends on your supplier's platform.** Not every PA implements every lifecycle event, and some may respond differently or not at all. Treat the cases below as what you should normally expect rather than a guarantee. |
+|----|
+
+## 10.8.1 Case 1 - Your supplier approved the invoice
+
+**What happened.** Your supplier confirmed the invoice is correct. The status is **Approved**.
+
+Nothing is required from you. Payment follows through your normal process, and your supplier confirms it when the money reaches them - at which point the invoice moves to a payment status.
+
+## 10.8.2 Case 2 - Your supplier suspended the invoice
+
+**What happened.** Your supplier needs additional documents before they can decide. The status is **Suspended**, and their reason is in the detailed view.
+
+**What to do**
+
+**1. Read the reason.** Open the invoice and check what they have asked for.
+
+**2. Send what they asked for, outside ClearTax.** Supporting documents are exchanged through your normal business channels. ClearTax does not carry them.
+
+**3. Mark the invoice Completed.** Select it, open the **Actions** dropdown and choose **Complete**. The status changes to **Completed**, telling your supplier they can resume.
+
+**4. Wait for their decision.** They re-evaluate and can then approve, dispute or refuse.
+
+| **WARNING Completed does not mean settled.** It means you have done your part. The invoice waits at Completed until your supplier acts. |
+|----|
+
+## 10.8.3 Case 3 - Your supplier disputed the invoice
+
+**What happened.** Your supplier found a problem. The status is **Disputed**, and their reason code, message and any comment are in the detailed view.
+
+A disputed invoice cannot be edited - it has already been exchanged. The remedy is a new document that references the original: either a **corrective invoice** or a **credit note**.
+
+**What to do**
+
+**1. Read the dispute reason.** Check the reason code, message and comment.
+
+**2. Decide: corrective invoice or credit note.** See the comparison below.
+
+**3. Create the document in your ERP or business system.** It must reference the original invoice.
+
+**4. Open the Actions dropdown and choose Resolve Dispute.** The modal gives you an **Import Document** button, which takes you to the import screen.
+
+**5. Import the document** through the UI, API or SFTP.
+
+**6. Submit it.** The new document runs through the same send flow and follows its own lifecycle.
+
+### Choosing between a corrective invoice and a credit note
+
+|  | **Corrective invoice** | **Credit note** |
+|----|----|----|
+| **What happens to the original** | Marked **Cancelled** | Stays active |
+| **What your supplier acts on** | The corrective invoice only | Both the original and the credit note |
+| **Reported to the PPF** | Yes, like any invoice | Yes, like any invoice |
+| **Use it when** | The original is wrong and should be replaced | The original stands, but an adjustment is needed |
+
+## 10.8.4 Case 4 - Your supplier refused it, or their platform rejected it
+
+**What happened.** The document is closed.
+
+| **Status** | **What it means** |
+|----|----|
+| **Refused** | Your supplier reviewed the invoice and permanently rejected it |
+| **Rejected** | Their platform turned it away on arrival, on its own validations |
+
+**What to do**
+
+**1. Read the reason** in the detailed view.
+
+**2. Fix the underlying problem** at source, in your ERP or business system.
+
+**3. Raise a new self-billed invoice** and submit it. The closed document stays closed.
+
+| **WARNING Both are terminal.** Nothing you do to a new invoice changes the status of the refused or rejected one. |
+|----|
+
+# 10.9 What stays the same
+
+The summary view, filters and detailed view all behave exactly as they do on the e-Invoicing tab.

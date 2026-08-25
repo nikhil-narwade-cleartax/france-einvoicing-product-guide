@@ -1,0 +1,229 @@
+---
+title: "Importing Documents"
+description: "This chapter applies whether you are issuing invoices to your customers or raising self-billed invoices on behalf of your suppliers."
+---
+
+# 2.1 Overview
+
+This chapter applies whether you are issuing invoices to your customers or raising self-billed invoices on behalf of your suppliers. The route in is the same for both; the only thing that changes is one choice at the start.
+
+Before you can send anything, your documents need to be inside ClearTax. There are three ways to get them there:
+
+| **Channel** | **Best for** |
+|----|----|
+| **Import UI** | Occasional or ad-hoc batches, and anyone working from a spreadsheet |
+| **API** | Continuous, high-volume flow direct from your ERP |
+| **SFTP** | Scheduled batch drops where a direct API integration isn't practical |
+
+All three converge on the same downstream flow. However a document arrives, ClearTax validates it, checks it isn't a duplicate, and places it in the right list ready for you to submit.
+
+| **What you are importing** | **Where it lands** |
+|----|----|
+| Invoices you are issuing to your customers | The **e-Invoicing** tab in Sales Documents |
+| Self-billed invoices you are raising for your suppliers | The **Self Billed** tab in Purchase Documents |
+
+Nothing else differs. The upload, validation, error handling and history described below are identical either way.
+
+This chapter covers the Import UI in full, then Import History for reviewing what you've uploaded, and finally a short orientation on API and SFTP.
+
+# 2.2 Bulk upload via the Import UI
+
+The upload runs in four steps: choose what you're importing, upload your file, confirm the details, then review the results and commit. ClearTax validates before anything is saved, so nothing enters your document list until you've seen what passed and what failed.
+
+## 2.2.1 Step 1 - Open Import
+
+From anywhere in the e-Invoicing app, click the **Import** icon in the left sidebar.
+
+![[F07] Left sidebar with Import highlighted](/images/image17.png)
+
+*[F07] Left sidebar with Import highlighted*
+
+## 2.2.2 Step 2 - Choose what you're importing
+
+A side panel opens and asks which kind of document you're bringing in.
+
+![[F08] Select documents to be imported](/images/image20.jpg)
+
+*[F08] Select documents to be imported*
+
+| **Option** | **Choose this when** |
+|----|----|
+| **Import Sales Documents** | You're the seller - uploading commercial invoices, credit notes and similar documents to send to your customers |
+| **Import Purchase Documents** | You're the buyer - uploading self-billed invoices you've raised on behalf of your suppliers |
+
+Your choice determines where the documents land and which ingestion template ClearTax validates against. Choose the wrong one and your file will fail validation against a template it was never built for, so the errors will look like data problems when they are not.
+
+Select a type and the panel advances to the upload step.
+
+## 2.2.3 Step 3 - Upload your file
+
+![[F09] Import file upload panel](/images/image21.png)
+
+*[F09] Import file upload panel*
+
+The panel has two zones.
+
+**The drop zone** at the top accepts your file. Either click to open the file picker, or drag the file straight in.
+
+| **NOTE File formats.** Both **.xlsx** and **.csv** are accepted. The label emphasises .xlsx because the ClearTax Ingestion Template is distributed as an Excel workbook, but a CSV works identically as long as it follows the same column structure. |
+|----|
+
+**The template link** at the bottom, under *"Don't have a file to import?"*, downloads the **ClearTax Ingestion Template** - the master workbook containing every required column along with format guidance for each one.
+
+| **TIP If this is your first import, download the template first.** Building your file from the template is far quicker than correcting a file that was structured differently, and it removes most validation errors before they happen. |
+|----|
+
+## 2.2.4 Step 4 - Confirm the file details
+
+Once the file has uploaded, a **File details** panel asks you to confirm three things before validation runs.
+
+![[F10] File details confirmation panel](/images/image31.png)
+
+*[F10] File details confirmation panel*
+
+|  | **Field** | **What to do** |
+|----|----|----|
+| 1 | **File selected for import** | Check the filename is correct. Use the trash icon to remove it and upload a different file. |
+| 2 | **Business** | Confirm which business the rows belong to. Select the specific SIREN, or choose **"File has multiple SIRENs"** if the file spans several entities - the importer will then route each row to the right entity using the SIREN column in your file. |
+| 3 | **Template to be used** | Select the ingestion template ClearTax should validate against, for example *Einvoice France - Sales Template*. Use the same template you downloaded in the previous step. |
+
+As the panel notes, ClearTax checks your file for the required columns based on the template you select here - so a mismatch between file and template will produce errors that look like data problems but aren't.
+
+When all three are set, click **Check file for errors & duplicates**. ClearTax now runs schema and business-rule validation against every row.
+
+| **WARNING Nothing has been imported yet.** This step only validates. Your documents don't enter your document list until you click Proceed in the next step. |
+|----|
+
+# 2.3 Reviewing the results
+
+Validation finishes and ClearTax returns a **File Summary**. What you see depends on whether your file was clean.
+
+## 2.3.1 If your file is clean
+
+![[F11] File summary - success state](/images/image54.png)
+
+*[F11] File summary - success state*
+
+You'll see a green success state confirming *"No errors in your file. Good job!"*, along with a **Branch Summary** showing the count of rows without errors.
+
+Click **Proceed** to import. Your rows land in the tab you chose at Step 2 - **Sales Documents** or the **Self Billed** tab in Purchase Documents - each with a starting status of **Pending**, ready to be submitted.
+
+That's the whole flow. You can move on to sending your invoices.
+
+## 2.3.2 If your file has errors
+
+![[F12] File summary - errors found](/images/image1.png)
+
+*[F12] File summary - errors found*
+
+The summary breaks down what ClearTax found:
+
+- **File Details** - the filename and size
+
+- **Branch Summary** - counts of documents, rows, errors (in red) and rows without errors (in green)
+
+- **Error File** - downloads a copy of your original file with error columns appended
+
+- **Review and fix errors** - takes you into the guided fix flow
+
+You have two ways forward, and the right one depends on how many errors there are.
+
+**Fix them offline.** Download the Error File, correct everything in Excel, and re-upload the corrected file from the beginning. This suits large error counts and anyone more comfortable working in a spreadsheet.
+
+**Fix them inline.** Click **Review and fix errors** to correct rows directly in ClearTax. This is quicker for a handful of errors and avoids a second upload.
+
+### Fixing errors inline
+
+Clicking **Review and fix errors** opens the error review page.
+
+![[F13] Inline error review page](/images/image47.png)
+
+*[F13] Inline error review page*
+
+The header confirms what you're working on and tracks your progress:
+
+- The **file name**, with **Business / SIREN tabs** if the file spans multiple entities
+
+- The instruction *"Fix the highlighted errors to import these rows"*
+
+- A **Fixed / Remaining counter** - for example *Fixed: 0, Remaining: 1* - which updates as you work
+
+- The **Proceed** button, top right
+
+Work through the highlighted fields, correcting each one until the Remaining count reaches zero.
+
+### Committing the import
+
+Click **Proceed** to commit. Your rows land in the tab you chose at Step 2 - **Sales Documents** or the **Self Billed** tab in Purchase Documents - with a starting status of **Pending**, ready to be submitted.
+
+| **TIP You don't have to fix everything now.** If you proceed with errors outstanding, the clean rows still import and the file stays in Import History with a **Fix Errors** link, so you can return to the remainder later. |
+|----|
+
+# 2.4 Import History
+
+Every file you upload is recorded - successful, partially successful, or entirely failed. Click **Import history** in the left sidebar.
+
+![[F14] Import history](/images/image9.png)
+
+*[F14] Import history*
+
+Use it to confirm an upload arrived, check how many rows survived validation, or return to a file whose errors you left unresolved.
+
+## 2.4.1 What the list shows
+
+| **Column** | **What it tells you** |
+|----|----|
+| **Upload Date (CET)** | When the file was uploaded |
+| **File Name** | The original filename |
+| **Source** | How the file reached ClearTax - UI, FTP, ERP, API or JSON_API |
+| **SIREN / SIRET** | Which entity or branch the file was routed to, or *Multiple BRANCH* for multi-entity files |
+| **Template** | The ingestion template used for validation |
+| **File Type** | xlsx or csv |
+| **Total Sheets** | Number of worksheet tabs in the file |
+| **Rows Processed** | Total rows the importer read |
+| **Rows (No Errors)** | Rows that passed validation |
+| **Rows (Errors)** | Rows that failed validation |
+| **Actions** | A contextual link - see below |
+
+| **TIP The Source column covers every channel, not just the UI.** Files arriving by API or SFTP appear here too, which makes this the single place to confirm that an overnight ERP drop actually landed. |
+|----|
+
+## 2.4.2 Filtering
+
+Click **Filters** to open the side panel.
+
+![[F15] Import history, filter panel](/images/image60.png)
+
+*[F15] Import history, filter panel*
+
+| **Filter**      | **How it works**                                    |
+|-----------------|-----------------------------------------------------|
+| **Upload Date** | Date picker to narrow to a particular day or window |
+| **File Name**   | Free-text search on the filename                    |
+| **Source**      | Checkboxes for UI, FTP, ERP, API and JSON_API       |
+
+**Apply Filters** and **Reset** sit at the bottom of the panel.
+
+## 2.4.3 Acting on a past import
+
+The **Actions** column shows one of two links, depending on the state of the file.
+
+| **Link** | **When it appears** | **What it does** |
+|----|----|----|
+| **Fix Errors** (red) | The file has errors that were never resolved | Reopens the inline error review page so you can fix what's outstanding and complete the import |
+| **View File** (blue) | The file was fully processed with nothing outstanding | Opens a read-only view of the file as it was ingested |
+
+# 2.5 API and SFTP
+
+If you're pushing high volume from an ERP, the Import UI quickly becomes a bottleneck. ClearTax supports two direct integration channels.
+
+**API.** A direct, real-time integration. Your ERP posts documents to ClearTax as they're raised, and receives status updates back - best where you need invoices moving continuously and want lifecycle statuses reflected in your own systems.
+
+*See the [<u>ClearTax France e-Invoicing API documentation</u>](https://docs.google.com/document/d/1mVwR09FVX1UPabGixiiYZjamX9KYkNmsJlocKkdlK6o/edit?tab=t.0) for endpoints, authentication and payload schemas.*
+
+**SFTP.** A scheduled batch channel. Your systems drop files into a secure directory and ClearTax collects and processes them on an agreed schedule - best where a direct API integration isn't practical, or where your existing process already produces batch files.
+
+*See the [<u>ClearTax France e-Invoicing SFTP documentation</u>](https://docs.google.com/document/d/17hYB-bePDNDyeh9Anqcdk8HRgg7_LabK/edit) for directory structure, file naming and scheduling.*
+
+| **NOTE** Both channels feed the same validation and status flow described in this chapter, and both appear in Import History under the **Source** column. |
+|----|

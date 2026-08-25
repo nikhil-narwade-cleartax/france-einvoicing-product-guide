@@ -1,0 +1,48 @@
+{
+  "$schema": "https://documentation.ai/schema.json",
+  "name": "ClearTax France e-Invoicing",
+  "description": "Product guide for ClearTax France e-Invoicing.",
+  "colors": {
+    "primary": "#2D5BE3",
+    "light": "#5B82EA",
+    "dark": "#1E3F9E"
+  },
+  "navigation": {
+    "groups": [
+      {
+        "group": "Getting started",
+        "pages": [
+          "docs/introduction",
+          "docs/dashboard-walkthrough",
+          "docs/importing-documents"
+        ]
+      },
+      {
+        "group": "Selling",
+        "pages": [
+          "docs/sales-documents",
+          "docs/sending-an-invoice",
+          "docs/when-something-goes-wrong",
+          "docs/reporting-payment"
+        ]
+      },
+      {
+        "group": "Buying",
+        "pages": [
+          "docs/purchase-documents",
+          "docs/reviewing-a-purchase-invoice"
+        ]
+      },
+      {
+        "group": "Self-billing",
+        "pages": [
+          "docs/self-billed-invoices-you-issue",
+          "docs/self-billed-invoices-you-receive"
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "links": []
+  }
+}

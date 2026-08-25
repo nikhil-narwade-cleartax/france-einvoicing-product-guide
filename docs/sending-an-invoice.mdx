@@ -1,0 +1,130 @@
+---
+title: "Sending an Invoice"
+description: "Importing a document does not send it."
+---
+
+# 4.1 Overview
+
+Importing a document does not send it. Documents arrive in Sales Documents with a status of **Pending**, and they sit there until you submit them.
+
+Submitting starts a chain that runs partly on its own. You click one button; ClearTax then validates the document, delivers it to your buyer's platform, and files the mandatory reports with the PPF. This chapter walks through that chain so you know what is happening at each stage and where it can stop.
+
+# 4.2 Submitting
+
+Select the documents you want to send and click **Submit**, the blue button above the table. You can submit a single document or several at once.
+
+![[F25] Submit button highlighted](/images/image6.png)
+
+*[F25] Submit button highlighted*
+
+| **WARNING Submit is not reversible.** Once a document has been submitted and accepted, it cannot be deleted. Only Pending and Failed documents can be removed. |
+|----|
+
+# 4.3 What happens after you click Submit
+
+Three things happen in sequence, and **each one runs only if the one before it succeeded**. If a stage fails, the document stops there and the later stages never happen.
+
+## 4.3.1 1. ClearTax validates the document
+
+The document goes to the ClearTax PA, which runs validation against it.
+
+Validation has two outcomes.
+
+**If validation passes**, the document is marked **Submitted** and moves on by itself. There is nothing more for you to do.
+
+**If validation fails**, the document is marked **Failed** and stops there. Stages 2 and 3 never run - nothing has gone to your buyer or to the PPF. You have two ways to recover it.
+
+**Fix it in ClearTax.** Best when the problem is a handful of fields.
+
+- Click the **invoice number** to open the detailed view
+
+- Review the errors shown at the top of the document
+
+- Click **Edit**
+
+- Correct the affected fields
+
+- **Submit** again
+
+![[F26] Document submission failed at ClearTax - edit, fix and resubmit](/images/image56.png)
+
+*[F26] Document submission failed at ClearTax - edit, fix and resubmit*
+
+**Delete it and import a corrected document.** Best when the problem started in your ERP, or when several fields are wrong.
+
+- Delete the failed document using the **Delete** action
+
+- Correct the document in your ERP or business system
+
+- Import it again through the UI, API or SFTP
+
+- **Submit** the new document
+
+![[F27] Document submission failed at ClearTax - Delete the documents](/images/image19.png)
+
+*[F27] Document submission failed at ClearTax - Delete the documents*
+
+| **TIP Fixing it in ClearTax does not correct your ERP.** If the bad data came from your source system, editing here sends a correct invoice but leaves the original wrong. Where the underlying record matters, fix it at source and re-import. |
+|----|
+
+## 4.3.2 2. ClearTax delivers to your buyer
+
+*Happens only if ClearTax validation passed.*
+
+ClearTax attempts delivery to your buyer's PA over the Peppol network. You do not need to do anything.
+
+What matters at this stage is the **technical acknowledgement** from your buyer's PA - confirmation that the document was transmitted and accepted at the network level.
+
+**If technical delivery is acknowledged**, the document has reached your buyer's platform and stage 3 runs.
+
+| **WARNING A technical acknowledgement is not acceptance.** It confirms the document arrived, nothing more. Your buyer's PA runs its own validations afterwards, asynchronously, and can still reject the document at platform level - see the chapter on handling problems. |
+|----|
+
+**If delivery to your buyer's PA fails**, the document is marked **Failed**.
+
+| **WARNING Failed has two different causes.** A document can be marked Failed because ClearTax validation rejected it, or because delivery to your buyer's PA failed. These need different responses, so open the detailed view to see which one you are dealing with - the error detail tells you whether the failure was internal to ClearTax or occurred on delivery. |
+|----|
+
+## 4.3.3 3. ClearTax reports to the PPF
+
+*Happens once technical delivery over Peppol has been acknowledged.*
+
+ClearTax files the mandatory reports with the PPF within 24 hours. Two things are filed: the **invoice's metadata extract**, and the **submitted / filed lifecycle status**.
+
+These filings are tracked in the **Government Reporting** column, independently of the invoice status. Each filing is accepted or rejected on its own, which is why a document can show a healthy invoice status while its reporting has failed.
+
+![[F28] Govt. Reporting columns shows the outcome of reporting to the PPF](/images/image7.png)
+
+*[F28] Govt. Reporting columns shows the outcome of reporting to the PPF*
+
+| **NOTE Reporting does not wait for your buyer.** ClearTax reports as soon as technical delivery is acknowledged. It does not wait for Received, Made Available, or any later status. |
+|----|
+
+Reporting runs asynchronously and independently of the exchange with your buyer. It is not a blocker: whatever happens to the filing, your invoice carries on through its lifecycle, and whatever your buyer does has no bearing on whether the filing succeeded.
+
+# 4.4 What happens at your buyer's end
+
+Once the document has been delivered, the statuses that follow come from your buyer's platform: **Received**, **Made Available**, and then whatever your buyer decides.
+
+![image36](/images/image36.png)
+
+| **WARNING These statuses may never arrive.** Your buyer's PA may not have implemented them, or may have issues at their end. A document sitting at delivered without progressing is not necessarily a problem with your invoice, and it does not affect your reporting obligations - those were met at stage 3. |
+|----|
+
+# 4.5 Where it can stop
+
+| **Stage** | **What you see** | **What you do** |
+|----|----|----|
+| ClearTax validation fails | Invoice Status: **Failed** | Open the detailed view, fix the errors and resubmit |
+| Delivery to your buyer's PA fails | Invoice Status: **Failed** | Open the detailed view to confirm the failure was on delivery, then resubmit |
+| Your buyer's platform rejects the document | Invoice Status: **Rejected** | Terminal. Raise a new invoice if you still need to bill. |
+| PPF filing fails | Government Reporting: **Failed** | Nothing. ClearTax fixes and retries automatically, and contacts you if it cannot. |
+
+| **NOTE A failed PPF filing does not block the invoice.** Reporting runs asynchronously and independently of the exchange with your buyer. Your invoice continues through its lifecycle - your buyer can still approve it, dispute it and pay it - while the reporting is retried or resolved separately. |
+|----|
+
+# 4.6 Resubmitting
+
+A document that failed ClearTax validation can be corrected and submitted again as many times as needed - it never left ClearTax, so there is nothing to undo.
+
+Once a document has been successfully delivered, it cannot be resubmitted. If something is wrong with it at that point, the remedy is a corrective invoice or a credit note, covered in the chapter on handling problems.

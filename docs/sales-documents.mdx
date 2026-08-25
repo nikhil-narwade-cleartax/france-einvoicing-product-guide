@@ -1,0 +1,359 @@
+---
+title: "Sales Documents"
+description: "Sales Documents is where every document you issue lives - commercial invoices, credit notes, corrective invoices and the rest."
+---
+
+# 3.1 Overview
+
+Sales Documents is where every document you issue lives - commercial invoices, credit notes, corrective invoices and the rest. Whether a document arrived by bulk upload, API or SFTP, this is where it lands and where you work on it from that point on.
+
+Three things happen here:
+
+- **You send.** Documents arrive with a status of Pending. Submitting them starts their journey to your buyer and to the PPF.
+
+- **You track.** Each document carries two independent statuses, and this is where you watch both.
+
+- **You act.** Confirming payment, resolving a dispute, responding to a suspension, emailing a copy to your buyer - all of it starts from this screen.
+
+Sales Documents is split into three tabs - **e-Invoicing**, **e-Reporting** and **Self Billed**. This chapter covers the **e-Invoicing** tab and how to read it. Self-billed invoices reverse the flow, so they are covered on their own at the end.
+
+Sending, handling problems, and confirming payment each have their own chapter after this one.
+
+# 3.2 Getting there
+
+From the e-Invoicing dashboard, either click the **Sales Documents** tile in the main area, or the **Sales Documents** icon in the left sidebar. Both take you to the same place.
+
+![[F16] Sales Documents](/images/image61.png)
+
+*[F16] Sales Documents*
+
+# 3.3 The three tabs
+
+Each tab holds a different category of outbound document, and the tab you are on determines what the filters and summary cards apply to.
+
+| **Tab** | **What it holds** |
+|----|----|
+| **e-Invoicing** | Domestic B2B invoices exchanged with your buyers through the Peppol network |
+| **e-Reporting** | International B2B sales, which are reported to the PPF rather than exchanged with a buyer's platform |
+| **Self-Billed** | Self-billed invoices your buyers have raised on your behalf and sent to you. The flow is reversed - see the chapter on self-billed invoices. |
+
+| **WARNING Filters, summary cards and actions apply only to the tab you are on.** If a document seems to be missing, check that you are on the right tab as well as the right entity. |
+|----|
+
+# 3.4 The status info panel
+
+Click **Learn more** above the table to open the status info panel, which lists every status ClearTax supports along with its definition.
+
+![[F17] Status info panel, open](/images/image62.png)
+
+*[F17] Status info panel, open*
+
+The French mandate introduces a large number of lifecycle states, and more of them will be unfamiliar than not. The panel is there so you can check a definition without leaving the screen.
+
+Everything the panel contains is reproduced below.
+
+## 3.4.1 Invoice Status in full
+
+Every status a document can carry, in roughly the order you will meet them.
+
+**Before it leaves ClearTax**
+
+| **Status** | **What it means** |
+|----|----|
+| **Pending** | Created but not yet submitted. Edit it if you need to, then click Submit to send it. |
+| **Failed** | Either ClearTax validation rejected the document, or delivery to your buyer's PA failed. Open the detailed view to see which. Fix the errors shown and resubmit. |
+
+**On its way to the buyer**
+
+| **Status** | **What it means** |
+|----|----|
+| **Submitted** | The invoice has been submitted to the ClearTax PA. If validation fails, the status changes to **Failed** - open the detailed view by clicking the invoice number, resolve the errors and resubmit. If validation passes, ClearTax automatically attempts delivery to the buyer's PA over Peppol. Once delivery succeeds, ClearTax attempts the mandatory filing of the invoice metadata and lifecycle status with the PPF. |
+| **Received** | Received by the buyer's PA. |
+| **Made Available** | The buyer's platform has received the document and made it available to the buyer for review. |
+
+**What your buyer decides**
+
+| **Status** | **What it means** |
+|----|----|
+| **Acknowledged** | Your buyer is reviewing the document. |
+| **Approved** | Your buyer confirms the invoice is correct. |
+| **Suspended** | Your buyer needs additional documents from you. Send them outside ClearTax, then mark the invoice Completed so your buyer knows to resume. |
+| **Completed** | You have provided the additional information your buyer asked for after suspending. Waiting for your buyer to re-evaluate. |
+| **Disputed** | Your buyer has flagged a problem. Review the reason and resolve it by raising a corrective invoice or a credit note. |
+| **Rejected** | The buyer's PA ran its own validations and turned the invoice away. This can happen some time after delivery appeared to succeed. The buyer's PA reports this to the PPF. Terminal - no further action is possible. |
+| **Refused** | Your buyer permanently rejected the invoice after receiving it. The buyer's PA reports this to the PPF. Terminal - raise a new invoice if you still need to bill. |
+| **Cancelled** | Applied automatically to the original invoice once you raise a corrective invoice against it. The cancellation is sent to your buyer. |
+
+| **NOTE Rejected and Refused sound alike but come from different places.** Rejected is your buyer's platform failing the document on its own validations, before any person has looked at it. Refused is a deliberate decision by your buyer after reviewing it. Both are terminal, and in both cases it is the buyer's PA that reports the outcome to the PPF, not ClearTax. |
+|----|
+
+**Getting paid**
+
+| **Status** | **What it means** |
+|----|----|
+| **Partial Payment Collected** | You have confirmed collection of part of the invoice. Report the remainder as you collect it. |
+| **Partial Payment Collected with Failures** | Part of the invoice was collected, but some of those collections failed to report to the PPF. Review and report the failed amounts again. |
+| **Payment Collected** | You have confirmed the full amount. The lifecycle is complete. |
+| **Payment Failed** | Reporting a collected payment to the PPF failed. Review the error and report the payment again. |
+
+| **NOTE Payment statuses only appear once you confirm a collection.** ClearTax has no visibility of your bank, so nothing here moves until you record the payment yourself. |
+|----|
+
+## 3.4.2 Government Reporting in full
+
+Government Reporting shows a single header-level status summarising every filing required for that document. Hover over it to expand the individual flows and see which specific filing succeeded and which failed.
+
+| **Status** | **What it means** |
+|----|----|
+| **Pending** | No filing to the PPF has been attempted yet. |
+| **In Progress** | Reports have been transmitted to the PPF and are awaiting confirmation. Some may already be accepted while others are still in flight. |
+| **Accepted** | Every required report, both invoice reporting and lifecycle events, has been accepted by the PPF. Nothing further is needed. |
+| **Failed** | At least one required filing was rejected by the PPF and could not be resolved automatically. |
+
+# 3.5 Summary cards
+
+A row of summary cards sits above the table. Each shows a live count, and clicking one filters the table to that status - the fastest way to answer "what needs my attention today".
+
+There are seven cards, drawn from both status columns:
+
+| **Card** | **What it counts** |
+|----|----|
+| **Total Ingested** | Every document that has entered ClearTax, whatever its state |
+| **Pending** | Imported but not yet submitted - these are waiting on you |
+| **Failed** | Rejected by ClearTax validation - these need fixing and resubmitting |
+| **Submitted** | Sent onward from ClearTax |
+| **Rejected** | Turned away by the buyer's platform on arrival |
+| **Refused** | Permanently rejected by the buyer |
+| **Payment Collected** | Payment confirmed and reported - lifecycle complete |
+
+| **TIP Start your day on Pending and Failed.** Those two are the only cards representing work sitting with you. The rest are either in flight or finished. |
+|----|
+
+# 3.6 Summary view
+
+The summary view is how the list presents your documents by default: one row per document, carrying a condensed set of fields drawn from the invoice itself.
+
+It exists so you can work across many documents at once. Rather than opening each one, you can scan the list to identify a document, see where it has reached in both its lifecycle and its reporting, and check its key commercial values - then open only the one you actually need.
+
+| **Column** | **What it shows** |
+|----|----|
+| **Invoice Number** | Your unique document number |
+| **Invoice Status** | Current commercial lifecycle status |
+| **Government Reporting** | Header-level reporting status - hover to expand individual flows |
+| **Invoice Date** | The date the invoice was issued |
+| **Invoice Type** | Commercial invoice, credit note, corrective invoice and so on |
+| **Buyer Name** | Your customer |
+| **Buyer SIREN** | Your customer's registration number |
+| **Invoice Currency Code** | The currency the document was issued in |
+| **Total Amount (Incl. VAT)** | Gross value |
+| **Total VAT Amount** | VAT component |
+| **Payment History** | Opens a drawer on the right showing every payment made and reported against the document, with the status of both delivery to your buyer's PA and reporting to the PPF |
+
+## 3.6.1 The two status columns
+
+**Invoice Status** and **Government Reporting** track two separate journeys. Every document carries both at once, and they move independently:
+
+| **Column** | **What it tracks** | **Who drives it** |
+|----|----|----|
+| **Invoice Status** | Where the document is in its commercial lifecycle - validated, delivered, acknowledged, approved, paid | ClearTax and your buyer |
+| **Government Reporting** | Whether the mandatory filings for that document have been accepted by the PPF | ClearTax and the PPF |
+
+A document can be fully approved and paid by your buyer while its reporting to the PPF has failed. It can also be reported successfully while your buyer disputes it. Neither column tells you about the other, so both need watching.
+
+![[F18] Two status columns - Invoice Status & Govt. Reporting](/images/image57.png)
+
+*[F18] Two status columns - Invoice Status & Govt. Reporting*
+
+| **WARNING Two status names appear in both columns and mean different things: Pending and Failed.** *Failed* under Invoice Status means ClearTax validation rejected the document. *Failed* under Government Reporting means the PPF rejected a filing. The remedies are completely different, so always check which column you are reading. |
+|----|
+
+# 3.7 Filtering the list
+
+Click **Filter** to open the filter panel.
+
+![[F19] Filter panel, top section](/images/image22.png)
+
+*[F19] Filter panel, top section*
+
+Filters are grouped into sections. Use the **Search Filters** box at the top to jump straight to a filter, or scroll through the panel.
+
+## 3.7.1 Filter groups
+
+| **Filter** | **What it does** |
+|----|----|
+| **Document Date Range** | Filter by the invoice issue date. Enter a start and end date. |
+| **Invoice Exchange Date** | Filter by the date the document was submitted to the PA. |
+| **Invoice Number** | Free-text search on your invoice number. |
+| **Buyer SIREN** | Free-text search on the buyer's SIREN. |
+| **Invoice Status** | Filter by any of the invoice statuses listed in the status info panel above. |
+| **Invoice Type** | Filter by document type - commercial invoices, credit notes, corrective invoices, prepayment, factored and self-billed variants. |
+| **Government Reporting Status** | Filter by any of the government reporting statuses listed in the status info panel above. |
+
+## 3.7.2 Applying and clearing filters
+
+At the bottom of the panel:
+
+- **Apply** - applies your selections. The table refreshes, and each active filter appears as a chip above the table.
+
+- **Clear All** - resets every filter in the panel back to unselected.
+
+- **×** (top-right of the panel) - closes the panel without applying your changes.
+
+Individual filter groups have their own **Clear** link, which resets only that group.
+
+# 3.8 Acting on documents
+
+Two controls above the table let you act on the documents in the list: the **Submit** button and the **Actions** dropdown.
+
+## 3.8.1 The Submit button
+
+**Submit** is the blue primary button above the table. It sends the documents you have selected - starting validation at the ClearTax PA, then delivery to your buyer over Peppol, then the mandatory filings with the PPF.
+
+It applies to documents sitting at **Pending**, and to documents at **Failed** that you have since corrected.
+
+| **NOTE** Submitting is covered in full in the chapter on **sending an invoice**, including what happens at each stage and what to do when a stage fails. |
+|----|
+
+## 3.8.2 The Actions dropdown
+
+Everything else you do to a document starts from the **Actions** dropdown, beside the Submit button.
+
+Select one or more documents in the list, open **Actions**, and choose what you want to do.
+
+![[F20] Actions dropdown, open](/images/image18.png)
+
+*[F20] Actions dropdown, open*
+
+Actions fall into two groups.
+
+**Invoice actions** record your decision on the document and exchange it with your buyer.
+
+| **Action** | **What it does** | **Input needed** |
+|----|----|----|
+| **Delete** | Removes a document. Only Pending and Failed documents can be deleted - a successfully exchanged invoice cannot. | None - single click |
+| **Complete** | Tells your buyer you have supplied what they asked for after suspending the invoice | None - single click |
+| **Resolve Dispute** | Starts the corrective invoice or credit note flow for a disputed invoice | A corrective invoice or credit note, imported |
+| **Confirm Payment** | Records a payment you have received and reports it | Amount collected, split by VAT rate |
+
+Each of these is covered step by step in the chapters that follow.
+
+## 3.8.3 What you can do, and when
+
+| **WARNING Not every action is available on every document.** What you can do depends on the document's current status. |
+|----|
+
+Which actions are available to you at each status.
+
+| **Status**            | **What you can do**                     |
+|-----------------------|-----------------------------------------|
+| **Pending**           | Submit, Delete                          |
+| **Failed**            | Submit (after correcting), Delete       |
+| **Received**          | Confirm Payment                         |
+| **Made Available**    | Confirm Payment                         |
+| **Acknowledged**      | Confirm Payment                         |
+| **Approved**          | Confirm Payment                         |
+| **Disputed**          | Resolve Dispute                         |
+| **Suspended**         | Complete                                |
+| **Completed**         | Nothing - the next move is your buyer's |
+| **Refused**           | Nothing - terminal                      |
+| **Rejected**          | Nothing - terminal                      |
+| **Payment Collected** | Nothing - terminal                      |
+
+| **TIP You do not have to wait for approval to record a payment.** Confirm Payment is available from Made Available onwards, so a payment that arrives early can be reported as soon as it lands. |
+|----|
+
+| **NOTE Refused, Rejected and Payment Collected are terminal.** The document is closed and no further action is possible. |
+|----|
+
+## 3.8.4 Export actions
+
+Export actions produce a copy of the document for use outside ClearTax.
+
+| **Action** | **What it does** |
+|----|----|
+| **Email** | Sends a PDF copy of the invoice to a recipient you choose |
+| **Print** | Generates a PDF for download |
+| **Download** | Exports the document data - XML Report, Lite Report or Detailed Report |
+
+## 3.8.5 Adjusting the table
+
+Two further controls sit alongside these and change how the list is displayed rather than the documents themselves:
+
+- **Show / hide and reorder columns** - choose which columns appear in the summary view and in what order
+
+- **Sort** - order the table by any sortable column
+
+# 3.9 Detailed view
+
+Click any invoice number to open the detailed view. It answers two different questions, and you will come here for one or the other.
+
+**What did we actually send?** The detailed view shows the complete document as ClearTax received it, laid out across sections that follow the ingestion template. Whatever was in the row you imported, or in the payload your ERP posted, is visible here. This is the place to check a value before you argue with a buyer about it.
+
+**What went wrong?** Where a document has a problem, the detailed view is also where you diagnose it.
+
+![[F21] Detailed view, full document](/images/image32.png)
+
+*[F21] Detailed view, full document*
+
+## 3.9.1 The sections of a document
+
+Use **Jump to a section** in the left rail to move straight to any part of the document. Not every section applies to every invoice - sections are populated from what you sent, and unused ones appear empty.
+
+Fields marked with a red asterisk in the interface are mandatory.
+
+| **Section** | **Fields** |
+|----|----|
+| **Invoice Details** | Invoice Type, Invoice Number, Invoice Issue Date, Invoice Exchange Date, Invoice Exchange Time, Invoice Currency Code, Tax Currency Code, Tax Point Date, Tax Point Date Code, Payment Due Date, Buyer Reference, Profile ID, Contract Type, Original Reference Document Number, Original Reference Document Date, Type of Previous Invoice, Invoice Period Start Date, Invoice Period End Date, Currency Exchange Rate, Exchange Rate Date |
+| **Document References** | Purchase Order Reference, Purchase Order Reference Date, Sales Order Reference, Contract Document Reference, Contract Reference Date, Project Reference, Receiving Advice Reference, Despatch Advice Reference, Despatch Advice Reference Date, Tender or Lot Reference, Invoiced Object Identifier, Invoiced Object Identifier Scheme ID, Buyer Accounting Reference, Payment Terms Description |
+| **Seller Details** | Seller Peppol ID, Seller Name, Seller Trading Name, Seller SIREN, Seller SIRET, Seller Routing Code, Seller Unique Subject ID, Seller VAT Number, Seller Tax Registration ID, Seller Identifier, Seller Identifier Scheme ID, Seller Legal Information, Seller Email, Seller Address Lines 1 to 3, Seller City, Seller Postal Code, Seller State, Seller Country Code, Seller Contact Name, Seller Telephone |
+| **Sales Agent** | Sales Agent Name, Role Code, Trading Name, Identifier, Identifier Scheme ID, SIREN, VAT ID, Peppol ID, Address Lines 1 to 3, City, State, Postal Code, Country Code, Contact Name, Contact Phone, Contact Email |
+| **Buyer Details** | Buyer Peppol ID, Buyer Name, Buyer Trading Name, Buyer SIREN, Buyer SIRET, Buyer Routing Code, Buyer VAT Number, Buyer Identifier, Buyer Identifier Scheme ID, Buyer Email, Buyer Address Lines 1 to 3, Buyer City, Buyer Postal Code, Buyer State, Buyer Country Code, Buyer Contact Name, Buyer Telephone |
+| **Buyer's Agent** | Buyer's Agent Name, Role Code, Trading Name, Identifier, Identifier Scheme ID, SIREN, VAT ID, Peppol ID, Address Lines 1 to 3, City, State, Postal Code, Country Code, Contact Name, Contact Phone, Contact Email |
+| **Tax Representative** | Tax Representative Name, Tax Representative Tax ID, Tax Rep Address Lines 1 to 3, Tax Rep City, Tax Rep Postal Code, Tax Rep State, Tax Rep Country Code |
+| **Payee Details** | Payee Name, Payee Role Code, Payee Identifier, Payee Identifier Scheme ID, Payee VAT ID, Payee Peppol ID, Payee Address Lines 1 to 3, Payee City, Payee Postal Code, Payee State, Payee Country Code, Payee Contact Name, Payee Contact Phone, Payee Contact Email |
+| **Payer Details** | Payer Name, Payer Role Code, Payer Trading Name, Payer Identifier, Payer Identifier Scheme ID, Payer SIREN, Payer VAT ID, Payer Peppol ID, Payer Address Lines 1 to 3, Payer City, Payer Postal Code, Payer State, Payer Country Code, Payer Contact Name, Payer Contact Phone, Payer Contact Email |
+| **Addressed To** | Addressed To Name, Addressed To Role Code, Addressed To Trading Name, Addressee Identifier, Addressee Identifier Scheme ID, Addressee SIREN, Addressee VAT ID, Addressee Peppol ID, Addressee Address Lines 1 to 3, Addressee City, Addressee Postal Code, Addressee State, Addressee Country Code, Addressee Contact Name, Addressee Contact Phone, Addressee Contact Email |
+| **Billing Service** | Billing Service Name, Role Code, Trading Name, Identifier, Identifier Scheme ID, SIREN, VAT ID, Peppol ID, Address Lines 1 to 3, City, State, Postal Code, Country Code, Contact Name, Contact Phone, Contact Email |
+| **Line items** | A table of every line billed: Invoice Line ID, Parent Line ID, Invoice Line Subtype, Invoice Line Reason, Invoice Line Object ID, Line Object Identifier Scheme ID, Quantity, Unit of Measure, and the line's pricing and VAT values |
+| **Online Seller** | Online Seller Name, Trading Name, Identifier, SIREN, VAT ID, Peppol ID, Online Seller's Identifier on the Line Scheme Identifier, Online Seller's Tax Identification Number per Line, Address Lines 1 to 3, City, State, Postal Code, Country Code |
+| **Document Allowance** | A table of discounts applied at document level: Allowance Amount, Allowance Base Amount, Allowance Percentage, Allowance VAT Category Code, Allowance VAT Rate, Allowance VAT Exemption Reason, Allowance VAT Exemption Code, Allowance Reason |
+| **Document Charge** | A table of charges applied at document level: Charge Amount, Charge Base Amount, Charge Percentage, Charge VAT Category Code, Charge VAT Rate, Charge VAT Exemption Reason, Charge VAT Exemption Code, Charge Reason |
+| **Invoice Amounts** | Sum of Net Amount (Line Extensions), Total Invoice Amount without VAT, Total VAT Amount, Total VAT Amount (Accounting Currency), Total Invoice Amount with VAT, Prepayment Amount, Payable Rounding Amount, Payable Amount |
+| **Delivery** | Delivery Recipient Name, Delivery Location ID, Delivery Location Scheme ID, Delivery Location Name, Actual Delivery Date, Delivery Address Lines 1 to 3, Delivery City, Delivery Post Code, Delivery State, Delivery Country Code, INCOTERMS Delivery Location ID |
+| **Payment** | Payment Means Code, Payment Means Text, Remittance Information, IBAN, Payment Account Name, BIC / SWIFT Code, Payment Card Number, Payment Card Holder Name, Mandate Reference ID, Bank Creditor ID, Debited Account ID |
+| **Additional Documents** | Supporting Document Reference, Supporting Document Description, External Document Location (URL), Attached Document MIME Code, Attached Document Filename |
+| **Invoice Notes** | PMT Notes, PMD Notes, AAB Notes, Invoice Note, Invoice Note Subject Code |
+
+## 3.9.2 Finding out what went wrong
+
+The header of the detailed view carries the **invoice number** and the current **document status**.
+
+Where a document has issues, a banner sits directly above the document body - for example *Invoice exchange error/warnings*, with a count of how many errors were found. That banner tells you what kind of problem you are dealing with. **Click View error details to drill into the full detail behind it.**
+
+Issues come in three kinds, and they call for three different responses.
+
+| **Issue type** | **What it means** | **Where it came from** |
+|----|----|----|
+| **ClearTax validation errors** | The document failed validation at the ClearTax PA and was never sent | ClearTax |
+| **Buyer responses** | Your buyer disputed, refused or suspended the document, with their stated reason | Your buyer |
+| **Government reporting issues** | A filing to the PPF failed, with the reason given | The PPF |
+
+![[F22] Detailed view, issues expanded - ClearTax Validation Errors](/images/image34.png)
+
+*[F22] Detailed view, issues expanded - ClearTax Validation Errors*
+
+![[F23] Detailed view, issues expanded - Buyer response (Disputed Invoice)](/images/image44.png)
+
+*[F23] Detailed view, issues expanded - Buyer response (Disputed Invoice)*
+
+![[F24] Detailed view, issues expanded - Govt. Reporting Errors](/images/image35.png)
+
+*[F24] Detailed view, issues expanded - Govt. Reporting Errors*
+
+For **ClearTax validation errors**, you can fix the problem without leaving the screen: click **Edit** at the top right of the detailed view, correct the affected fields and resubmit.
+
+The other two kinds cannot be fixed by editing, because the document has already left ClearTax. Buyer responses and reporting failures are covered in the chapter on handling problems.
+
+## 3.9.3 Payment history
+
+The **Payment History** view opens a drawer on the right listing every payment made and reported against the document, what each consisted of, and its current state - both delivery of the update to your buyer's PA and the outcome of reporting it to the PPF. It is covered in full in the chapter on getting paid.

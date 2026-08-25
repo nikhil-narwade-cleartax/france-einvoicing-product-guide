@@ -1,0 +1,167 @@
+---
+title: "When Something Goes Wrong"
+description: "Once an invoice reaches your buyer, they may not simply approve it."
+---
+
+# 5.1 Overview
+
+Once an invoice reaches your buyer, they may not simply approve it. They can ask for more information, raise a problem, or reject it outright - and each of those needs a different response from you.
+
+This chapter covers what your buyer can do and how you respond. Failures before the invoice reaches your buyer - ClearTax validation and Peppol delivery - are covered in the chapter on sending.
+
+| **What your buyer does** | **Status you see** | **What you do** |
+|----|----|----|
+| Asks for supporting documents | **Suspended** | Send the documents offline, then mark the invoice **Completed** |
+| Raises a problem with the invoice | **Disputed** | Resolve it with a corrective invoice or a credit note |
+| Permanently rejects the invoice | **Refused** | Terminal. Raise a new invoice if you still need to bill. |
+| Their platform fails it on its own validations | **Rejected** | Terminal. Check the reason, then raise a new invoice. |
+
+In every case, the reason your buyer gave is in the **detailed view**. Open the invoice and read it before acting.
+
+# 5.2 Your buyer suspends the invoice
+
+A suspension means your buyer needs something more from you before they can decide - usually supporting documentation. The invoice is not rejected; it is waiting.
+
+![[F30] Suspended invoice in the detailed view, showing the reason](/images/image38.png)
+
+*[F30] Suspended invoice in the detailed view, showing the reason*
+
+## 5.2.1 How to respond
+
+**1. Read the reason.** Open the invoice and check what your buyer has asked for.
+
+**2. Send what they asked for, outside ClearTax.** Supporting documents are exchanged through your normal business channels - email or however you usually correspond with that customer. ClearTax does not carry them.
+
+**3. Mark the invoice Completed.** Once you have sent the documents, select the invoice in the list, open the **Actions** dropdown and choose **Complete**. The status changes to **Completed**, telling your buyer they can resume.
+
+![[F31] Marking the Suspended invoice with “Complete” action](/images/image26.png)
+
+*[F31] Marking the Suspended invoice with “Complete” action*
+
+**4. Wait for your buyer.** Completed means you have done your part. Your buyer re-evaluates and can then approve, dispute or refuse the invoice.
+
+![[F32] Status of the Suspended invoice changed to Completed](/images/image10.png)
+
+*[F32] Status of the Suspended invoice changed to Completed*
+
+| **WARNING Completed does not mean resolved.** Despite the name, it means you are waiting on your buyer, not that the invoice is settled. |
+|----|
+
+# 5.3 Your buyer disputes the invoice
+
+A dispute means your buyer has found a problem. They provide a reason code, a reason message, and any additional comment, all of which appear in the detailed view.
+
+A disputed invoice cannot be edited. It has already been exchanged, so the remedy is a new document that references the original: either a **corrective invoice** or a **credit note**.
+
+![[F33] Disputed invoice in the detailed view, showing the dispute reason](/images/image41.png)
+
+*[F33] Disputed invoice in the detailed view, showing the dispute reason*
+
+## 5.3.1 How to respond
+
+**1. Read the dispute reason.** Open the invoice and check the reason code, message and any comment your buyer added. This determines which route you take next.
+
+**2. Decide: corrective invoice or credit note.** The two behave differently - see the comparison below.
+
+**3. Create the document in your ERP or business system.** ClearTax does not create it for you. The new document must reference the original invoice.
+
+**4. Open the Actions dropdown and choose Resolve Dispute.** The modal explains the two routes and gives you an **Import Document** button, which takes you to the import screen.
+
+![[F34] Resolve Dispute Action](/images/image63.png)
+
+*[F34] Resolve Dispute Action*
+
+![[F35] Resolve Dispute Modal](/images/image48.png)
+
+*[F35] Resolve Dispute Modal*
+
+**5. Import the document.** Bring it in through the UI, API or SFTP, exactly as you would any other document.
+
+![[F36] Redirection to Import Modal](/images/image64.png)
+
+*[F36] Redirection to Import Modal*
+
+**6. Submit it.** The new document runs through the same send flow as any invoice, and follows its own lifecycle from there.
+
+| **WARNING The corrective invoice or credit note must reference the original invoice.** Without that reference, ClearTax cannot link it to the document being disputed. |
+|----|
+
+## 5.3.2 Choosing between a corrective invoice and a credit note
+
+The two routes behave differently, and the difference matters.
+
+|  | **Corrective invoice** | **Credit note** |
+|----|----|----|
+| **What happens to the original** | Marked **Cancelled** | Stays active |
+| **Is the cancellation sent to your buyer?** | Yes | Not applicable |
+| **What your buyer can act on** | The corrective invoice only | Both the original and the credit note |
+| **Reported to the PPF** | Yes, like any invoice | Yes, like any invoice |
+| **Where payment is collected** | On the corrective invoice | On either the original or the credit note |
+| **Use it when** | The original is wrong and should be replaced | The original stands, but an adjustment is needed |
+
+**Corrective invoice.** The corrective replaces the original. ClearTax marks the original **Cancelled**, shares that status with your buyer, and reports the corrective to the PPF exactly as it would any invoice. The corrective then follows its own lifecycle from the beginning, and payment is collected against it.
+
+**Credit note.** Both documents stay live. Your buyer can act on the original and on the credit note independently - in the straightforward case, they approve both. Nothing is cancelled, and payment can be collected on either.
+
+# 5.4 Your buyer refuses the invoice
+
+A refusal is your buyer's final decision after reviewing the invoice. The status is **Refused**, the buyer's PA reports it to the PPF, and there is nothing further you can do to that document.
+
+![[F37] Refused invoice in the detailed view, showing the reason](/images/image49.png)
+
+*[F37] Refused invoice in the detailed view, showing the reason*
+
+## 5.4.1 How to respond
+
+**1. Read the refusal reason.** Open the invoice and check why your buyer refused it.
+
+**2. Resolve it commercially.** A refusal is a business decision, so the conversation happens outside ClearTax. There is no action to take on the refused document itself.
+
+**3. Raise a new invoice if you still need to bill.** Create it in your ERP, import it, and submit it as normal. It is a new document with its own lifecycle, not a correction of the refused one.
+
+| **WARNING Refused is terminal.** The original document stays refused. Nothing you do to a new invoice changes its status. |
+|----|
+
+# 5.5 Your buyer's platform rejects the invoice
+
+A rejection is a platform-level decision, not a human one. Your buyer's PA runs its own validations against the document and turns it away if it does not pass.
+
+| **WARNING This can happen after delivery appeared to succeed.** The technical acknowledgement your buyer's PA returns only confirms the document arrived. Its validations run afterwards and asynchronously, so an invoice that showed as delivered - and that ClearTax has already reported to the PPF - can still come back as **Rejected** some time later. |
+|----|
+
+## 5.5.1 How to respond
+
+**1. Read the rejection reason.** Open the invoice. Because this came from your buyer's platform rather than a person, the reason usually points at something specific about the document.
+
+**2. Fix the underlying problem.** Correct whatever the rejection identified, at source in your ERP or business system.
+
+**3. Raise a new invoice.** Import and submit the corrected document as normal.
+
+| **WARNING Fix the cause before resending.** If you raise a replacement without addressing what the rejection identified, the buyer's platform will most likely reject it the same way. |
+|----|
+
+| **NOTE Rejected and Refused are both terminal, but they tell you different things.** A rejection points at something about the document that the buyer's platform would not accept. A refusal is a commercial decision by your buyer. |
+|----|
+
+# 5.6 When government reporting fails
+
+Where a filing to the PPF is rejected and cannot be resolved automatically, the **Government Reporting** column shows **Failed**. The detailed view carries the reason.
+
+This does not block your invoice, which continues through its lifecycle regardless. Your buyer can still approve it, dispute it and pay it.
+
+![[F38] Government reporting failure in the detailed view](/images/image8.png)
+
+*[F38] Government reporting failure in the detailed view*
+
+## 5.6.1 How to respond
+
+In most cases, nothing. ClearTax resolves reporting failures itself wherever it can.
+
+**1. ClearTax fixes and retries automatically.** Where the failure is something ClearTax can correct, it does so and re-files with the PPF without involving you. The Government Reporting status updates once the filing is accepted.
+
+**2. Where ClearTax cannot fix it, we come to you.** If the failure needs something only you can supply, ClearTax notifies you and reaches out directly with what is needed.
+
+**3. Check the reason if you want the detail.** Open the detailed view and expand the government reporting issue to see what the PPF returned.
+
+| **TIP A reporting failure is not a task waiting for you.** Unlike a Failed invoice status, which sits until you act, a failed filing is being handled. You only need to do something if ClearTax contacts you about it. |
+|----|

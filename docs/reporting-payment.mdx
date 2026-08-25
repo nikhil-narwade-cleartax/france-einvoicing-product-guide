@@ -1,0 +1,121 @@
+---
+title: "Reporting Payment"
+description: "When a payment lands in your bank, ClearTax does not know about it."
+---
+
+# 6.1 Overview
+
+When a payment lands in your bank, ClearTax does not know about it. There is no bank connection - you tell ClearTax, using the **Confirm Payment** action.
+
+Confirming a payment does two things at once: it reports the collection to the government, and it shares the updated status with your buyer's PA.
+
+| **WARNING Payment reporting applies to services invoices only.** Where VAT is due on collection rather than on issue, the payment must be reported. For other invoices there is nothing to report. |
+|----|
+
+# 6.2 Before you start
+
+Three things are worth knowing before you open the modal, because each one catches people out.
+
+| **Rule** | **Why it matters** |
+|----|----|
+| **Report in EUR** | Payments must be reported in euros, whatever currency the invoice was issued in. This is mandated by the PPF, not a ClearTax choice. |
+| **Split by VAT rate** | You report the amount collected broken down by VAT rate, not as a single figure. |
+| **Payment Collected is terminal** | Once the full amount is confirmed, the lifecycle is complete and no further collections can be recorded against that invoice. |
+
+# 6.3 When you can confirm a payment
+
+The action becomes available as soon as the invoice has been delivered successfully to your buyer's PA. It can be taken from any of these statuses:
+
+- **Received**
+
+- **Made Available**
+
+- **Acknowledged**
+
+- **Approved**
+
+You do not need to wait for your buyer to approve the invoice before recording a payment against it.
+
+# 6.4 How to confirm a payment
+
+**1. Open the Actions dropdown and choose Confirm Payment.**
+
+![[F39] Confirm Payment in the Actions dropdown](/images/image65.png)
+
+*[F39] Confirm Payment in the Actions dropdown*
+
+**2. Check the figures ClearTax has filled in.** The modal shows the total amount for collection, the amount still due, and how much has been collected so far, along with the VAT rates taken from the invoice.
+
+![[F40] Confirm Payment modal, showing details from the invoice](/images/image27.png)
+
+*[F40] Confirm Payment modal, showing details from the invoice*
+
+**3. Enter what you collected, split by VAT rate.** Put the amount received against each rate. Remember this must be in EUR.
+
+![image42](/images/image42.png)
+
+***\[F41** Entering the amount against each VAT rate*
+
+**4. Confirm.** ClearTax reports the collection to the government and exchanges the updated status with your buyer's PA. The invoice status updates to reflect what you recorded.
+
+# 6.5 Collecting in more than one payment
+
+Payments often arrive in installments, and ClearTax handles that. Record each one as it arrives.
+
+After a partial collection, the invoice status becomes **Partial Payment Collected**.
+
+![image55](/images/image55.png)
+
+***\[F42** Invoice showing Partial Payment Collected*
+
+When you come back to record the next instalment, the modal already knows what you collected last time and shows the remaining balance due.
+
+![[F43] Second collection, showing the balance due from the previous payment](/images/image13.png)
+
+*[F43] Second collection, showing the balance due from the previous payment*
+
+Enter the new amount against each VAT rate as before. In this example the remaining balance is collected in full.
+
+![[F44] Entering the second payment, clearing the balance](/images/image66.png)
+
+*[F44] Entering the second payment, clearing the balance*
+
+Once the whole amount has been collected, the status becomes **Payment Collected**.
+
+![[F45] Full payment collected](/images/image43.png)
+
+*[F45] Full payment collected*
+
+| **WARNING Payment Collected is terminal.** No further collections can be recorded against that invoice. |
+|----|
+
+# 6.6 When ClearTax cannot fill in the balance
+
+For most invoices, ClearTax works out the balance due for you. Two cases prevent that, and both need you to supply the figures yourself.
+
+| **Case** | **Why ClearTax cannot calculate it** | **What you do** |
+|----|----|----|
+| **Prepayment invoices** | ClearTax does not know the VAT-rate split of the amount already prepaid | Enter the split yourself, from your ERP or business system |
+| **Invoices issued in a currency other than EUR** | ClearTax does not know the exchange rate you applied when the payment was received | Convert to EUR yourself and enter the split |
+
+| **WARNING In these two cases the figures are yours to get right.** ClearTax cannot check them against the invoice, so take the split from your ERP or business records rather than estimating. |
+|----|
+
+# 6.7 Payment history
+
+Because payments can arrive in instalments, ClearTax keeps a record of every collection you report against an invoice.
+
+Click **Payment History** in the summary view to open the payment history drawer on the right of the screen.
+
+![[F46] Payment history view](/images/image33.png)
+
+*[F46] Payment history view*
+
+The drawer lists every payment made and reported for that invoice. For each one it shows the details of the collection and its current state on both fronts: **delivery of the update to your buyer's PA**, and the **outcome of reporting it to the PPF**. The two are tracked separately, exactly as they are for the invoice itself.
+
+![[F47] Payment history showing the VAT-rate split](/images/image46.png)
+
+*[F47] Payment history showing the VAT-rate split*
+
+| **NOTE The statuses used here are the payment statuses from the status info panel** - Partial Payment Collected, Payment Collected, Payment Failed and the rest. See the status info panel in the Sales Documents chapter for the full definitions. |
+|----|

@@ -1,0 +1,204 @@
+---
+title: "Self-Billed Invoices You Receive"
+description: "The Self Billed tab in Sales Documents holds invoices your buyer has raised on your behalf."
+---
+
+# 7.1 Overview
+
+The **Self Billed** tab in Sales Documents holds invoices your buyer has raised on your behalf. You are still the seller and you still get paid - but your buyer created the document, so the flow runs in the opposite direction.
+
+Everything covered so far still applies. This chapter describes only what differs.
+
+![[F48] Self Billed tab](/images/image28.png)
+
+*[F48] Self Billed tab*
+
+# 7.2 What changes, and what does not
+
+| **Question** | **Answer for self-billed invoices** |
+|----|----|
+| **Who issues the invoice** | Your buyer, on your behalf |
+| **Who submits it** | Your buyer. Nothing to submit here - the document arrives already exchanged. |
+| **Who reports the metadata and submitted status to the PPF** | Your buyer, since they issued the document |
+| **Who reviews and decides** | You. Approve, dispute, suspend or refuse. |
+| **Who collects and reports payment** | You, exactly as on any other invoice |
+
+| **NOTE Payment is the one thing that does not invert.** Whoever issued the invoice, the seller is the one who gets paid, so confirming and reporting the collection remains yours. |
+|----|
+
+# 7.3 What the statuses mean here
+
+The statuses are the same ones described in the status info panel, and they carry the same meanings - but the roles are reversed, so read them from your side.
+
+| **Status** | **What it means to you** |
+|----|----|
+| **Received** | Your PA received the invoice from your buyer's platform and is processing it for availability. This happens at platform level - you will not normally see it. |
+| **Made Available** | A new invoice has arrived from your buyer and is ready for you. This is the first status you see. Review the invoice and take action - approve, dispute, suspend or refuse. |
+| **Acknowledged** | You are reviewing the invoice |
+| **Approved** | You approved the invoice |
+| **Disputed** | You flagged a problem. Waiting for your buyer to resolve it. |
+| **Suspended** | You requested additional documents from your buyer. Waiting for them to provide them. |
+| **Completed** | Your buyer provided the additional information you asked for. Review and decide - approve or dispute. |
+| **Cancelled** | Your buyer cancelled the invoice after you disputed it. A corrective invoice will arrive separately. |
+| **Refused** | You permanently refused the invoice. Reported to the PPF. Terminal - no further action. |
+| **Rejected** | Your platform automatically rejected the invoice on arrival because of validation errors. Reported to the PPF. |
+| **Payment Collected**, **Partial Payment Collected**, **Partial Payment Collected with Failures**, **Payment Failed** | Unchanged. These describe payments you have collected and reported. |
+
+# 7.4 Summary cards
+
+The Self Billed tab shows four cards rather than seven, because the statuses that precede delivery are not yours:
+
+| **Card** | **What it counts** |
+|----|----|
+| **Total Received** | Every self-billed invoice that has arrived |
+| **Rejected** | Turned away automatically on arrival because of validation errors |
+| **Refused** | Invoices you permanently refused |
+| **Payment Collected** | Payment confirmed and reported - lifecycle complete |
+
+# 7.5 Government reporting
+
+The Government Reporting column works the same way, but there is less in it. Because your buyer reports the invoice metadata and the submitted lifecycle status, what remains yours to report is:
+
+- **Rejected** or **Refused**, where you turn the invoice away
+
+- **Payment collection**, where you confirm money received
+
+Everything else on the reporting side belongs to your buyer.
+
+# 7.6 What you can do
+
+Select a document and open the **Actions** dropdown.
+
+![[F49] Actions dropdown on a self-billed invoice](/images/image5.png)
+
+*[F49] Actions dropdown on a self-billed invoice*
+
+| **Action** | **What it does** |
+|----|----|
+| **Acknowledge** | Marks the invoice as under review |
+| **Approve** | Confirms the invoice is correct |
+| **Dispute** | Flags a problem for your buyer to resolve |
+| **Suspend** | Asks your buyer for additional documents |
+| **Refuse** | Permanently rejects the invoice. Terminal, and reported to the PPF. |
+| **Confirm Payment** | Records a payment you have received, exactly as on any other invoice |
+
+| **WARNING There is no Submit, Delete or Resolve Dispute here.** You did not create the document, so there is nothing to send or remove. When you dispute a self-billed invoice, the resolution comes from your buyer's side - see what happens after you act, below. |
+|----|
+
+# 7.7 What happens after you act
+
+Approving closes the matter. The other three decisions leave the invoice open, and something comes back to you. There are four cases.
+
+| **Case** | **Where you left it** | **What came back** |
+|----|----|----|
+| **1** | Suspended | The documents arrived and the invoice moved to **Completed** |
+| **2** | Disputed | A **corrective invoice** arrived |
+| **3** | Disputed | A **credit note** arrived |
+| **4** | Disputed | Nothing has come back |
+
+| **NOTE These are the flows the French specification advises, but what actually reaches you depends on the counterparty's platform.** Not every PA implements every lifecycle event, and some may respond differently or not at all. Treat the cases below as what you should normally expect rather than a guarantee - and where nothing comes back, Case 4 tells you how to close the document yourself. |
+|----|
+
+## 7.7.1 Case 1 - You suspended, and the documents came back
+
+**What happened.** The documents you asked for arrived outside ClearTax, and the invoice moved to **Completed**.
+
+| **WARNING Completed does not mean settled.** It means your buyer has responded. The invoice waits at Completed until you act on it again. |
+|----|
+
+**What to do**
+
+**1. Check the documents.** They arrived outside ClearTax - by email or however you normally correspond.
+
+**2. Reopen the invoice** and review it against what was sent.
+
+**3. Decide.**
+
+| **Option** | **When** |
+|----|----|
+| **Approve** | The documents answered your question and the invoice is correct |
+| **Dispute** | The documents did not resolve it, or revealed a genuine problem |
+
+| **TIP You do not have to wait.** From **Suspended** you can approve or refuse at any point, if you decide you no longer need the documents. |
+|----|
+
+## 7.7.2 Case 2 - You disputed, and a corrective invoice arrived
+
+**What happened.** A **corrective invoice** arrived, replacing the one you disputed.
+
+**Two things change on your list at once:**
+
+- The **original** is marked **Cancelled** and closes. You do not act on it again.
+
+- The **corrective** appears as a **new document** at **Made Available**, with its own lifecycle from the beginning.
+
+**What to do**
+
+**1. Find the new document.** It arrives at Made Available like any other self-billed invoice.
+
+**2. Check it against your dispute.** Confirm the correction addresses what you actually raised.
+
+**3. Review it as a new invoice.** Acknowledge, approve, dispute, suspend or refuse - the full set of actions is available again.
+
+**4. Leave the original alone.** It is Cancelled and terminal.
+
+| **NOTE One decision, not two.** Only the corrective needs acting on. |
+|----------------------------------------------------------------------|
+
+## 7.7.3 Case 3 - You disputed, and a credit note arrived
+
+**What happened.** A **credit note** arrived, adjusting the invoice rather than replacing it.
+
+**This is the important difference:**
+
+- The **original stays active**. It is *not* cancelled.
+
+- The **credit note** appears as a **separate document** at **Made Available**.
+
+- **Both documents need your decision.**
+
+| **WARNING This is the case people get wrong.** You now have two live documents. Approving the credit note does not settle the original invoice, and approving the invoice does not settle the credit note. |
+|----|
+
+**What to do**
+
+**1. Find the credit note.** It arrives at Made Available as a new document.
+
+**2. Check the adjustment.** Confirm the credit covers what you disputed.
+
+**3. Act on the credit note.** Approve it if the adjustment is right.
+
+**4. Act on the original invoice too.** In the straightforward case you approve both.
+
+| **TIP Check both are settled before you close the matter.** A credit note approved against an invoice still sitting at Disputed leaves the transaction half-resolved. |
+|----|
+
+## 7.7.4 Case 4 - You disputed, and nothing has come back
+
+**What happened.** The dispute has not been resolved, or you have settled the matter another way.
+
+A dispute does not lock the invoice. You can still act on it directly.
+
+| **Option** | **Effect** |
+|----|----|
+| **Approve** | Closes out the dispute and accepts the invoice as issued |
+| **Refuse** | Rejects the invoice permanently and reports the refusal to the PPF |
+
+## 7.7.5 Corrective invoice or credit note - telling them apart
+
+|  | **Corrective invoice** | **Credit note** |
+|----|----|----|
+| **What happens to the original** | Marked **Cancelled** | Stays active |
+| **How many documents you act on** | One - the corrective | Two - the original and the credit note |
+| **Where it appears** | New document at Made Available | New document at Made Available |
+
+| **TIP Check the original's status to tell which you have received.** If it flipped to **Cancelled**, a corrective invoice was issued. If it is still active, a credit note was issued and both documents are yours to settle. |
+|----|
+
+# 7.8 What stays the same
+
+The summary view, filters and detailed view all behave exactly as they do on the e-Invoicing tab.
+
+# 7.9 Payment history
+
+Payment history behaves exactly as it does elsewhere. You record each collection, and the drawer tracks what was reported and what happened to it.

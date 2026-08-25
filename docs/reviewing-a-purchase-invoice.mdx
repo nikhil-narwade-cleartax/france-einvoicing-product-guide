@@ -1,0 +1,284 @@
+---
+title: "Reviewing a Purchase Invoice"
+description: "An invoice arrives from your supplier and reaches Made Available."
+---
+
+# 9.1 Overview
+
+An invoice arrives from your supplier and reaches **Made Available**. From that point it is waiting on you.
+
+You have five actions. Two are simple acknowledgements of where you have got to; three are decisions that need a reason and are exchanged back with your supplier.
+
+| **What you want to do** | **Action** | **Status you end up at** |
+|----|----|----|
+| Tell your supplier you are looking at it | **Acknowledge** | Acknowledged |
+| Confirm the invoice is correct | **Approve** | Approved |
+| Raise a problem and ask them to fix it | **Dispute** | Disputed |
+| Ask for supporting documents before deciding | **Suspend** | Suspended |
+| Reject it permanently | **Refuse** | Refused |
+
+| **WARNING You cannot edit a purchase invoice.** Your supplier issued it, so any correction has to come from them. Where something is wrong, dispute or refuse it rather than looking for a way to change it. |
+|----|
+
+Every action starts the same way: select the invoice in the list, open the **Actions** dropdown, and choose what you want to do.
+
+# 9.2 Acknowledge
+
+Acknowledging tells your supplier that the invoice has reached you and you are reviewing it. It is not a decision, and it commits you to nothing.
+
+## 9.2.1 How to respond
+
+**1. Select the invoice** in the list.
+
+**2. Open the Actions dropdown and choose Acknowledge.**
+
+**3. That is it.** No reason, no comment. The status changes to **Acknowledged**.
+
+![[F56] Acknowledge action from Actions Dropdown](/images/image4.png)
+
+*[F56] Acknowledge action from Actions Dropdown*
+
+| **TIP Acknowledging is optional.** You can approve, dispute, suspend or refuse straight from Made Available without acknowledging first. It is useful where review takes time and you want your supplier to know the invoice has not been ignored. |
+|----|
+
+# 9.3 Approve
+
+Approving confirms the invoice is correct.
+
+## 9.3.1 How to respond
+
+**1. Select the invoice** in the list.
+
+**2. Open the Actions dropdown and choose Approve.**
+
+**3. That is it.** No reason, no comment. The status changes to **Approved**.
+
+![[F57] Approve action from Actions Dropdown](/images/image12.png)
+
+*[F57] Approve action from Actions Dropdown*
+
+| **NOTE Approving is about the document, not the payment.** It records that the invoice is correct. Payment is confirmed by your supplier when the money reaches them, and appears on this invoice as a payment status. |
+|----|
+
+# 9.4 Dispute
+
+Disputing flags a problem and asks your supplier to resolve it. The invoice stays live while they do.
+
+![[F57] Approve action from Actions Dropdown](/images/image15.png)
+
+*[F57] Approve action from Actions Dropdown*
+
+## 9.4.1 How to Dispute
+
+**1. Select the invoice** in the list.
+
+**2. Open the Actions dropdown and choose Dispute.**
+
+**3. Choose a reason.** Six categories are available. Five of them then ask you to pick a specific reason from a dropdown.
+
+| **Category** | **Specific reasons** |
+|----|----|
+| **Errors in amounts and calculations** | Wrong total amount · Calculation error · Incorrect VAT rate · Wrong unit price · Wrong discount |
+| **Incorrect order details and quality issues** | Wrong or missing PO number · Wrong quantity · Wrong article · Defective quality · Delivery issue |
+| **Wrong references, identifiers or payment terms** | Missing contractual reference · Incorrect reference · Wrong or missing SIRET · Wrong routing code · Wrong billing address · Missing legal mention · Wrong payment terms |
+| **Unknown recipient or sender** | Wrong recipient · Unknown sender · Unknown transaction · Contract terminated |
+| **Duplicate** | Duplicate invoice · Already invoiced |
+| **Other reason** | None - no second choice required |
+
+**4. Add a comment.** Optional, but the comment is what tells your supplier what actually needs fixing. A reason code alone rarely does.
+
+**5. Click Submit dispute.** The status changes to **Disputed** and your supplier is notified.
+
+![[F58] Dispute invoice modal](/images/image53.png)
+
+*[F58] Dispute invoice modal*
+
+# 9.5 Suspend
+
+Suspending puts the invoice on hold while you ask your supplier for supporting documents. You are not saying the invoice is wrong - you are saying you cannot decide yet.
+
+![[F59] Suspend action from Actions Dropdown](/images/image23.png)
+
+*[F59] Suspend action from Actions Dropdown*
+
+The modal states plainly that your supplier will be notified, and that **the requested documents are provided outside ClearTax** - by email or however you normally correspond with them.
+
+## 9.5.1 How to Suspend
+
+**1. Select the invoice** in the list.
+
+**2. Open the Actions dropdown and choose Suspend.**
+
+**3. Choose a reason.** Four are available, with no second-level choice.
+
+| **Reason**                                   |
+|----------------------------------------------|
+| Missing or insufficient supporting documents |
+| Wrong or missing PO number                   |
+| Missing contractual reference                |
+| Wrong total amount                           |
+
+**4. Describe what you need.** The comment is **required** here. Your supplier has to know which documents to send, so be specific.
+
+**5. Click Suspend.** The status changes to **Suspended**.
+
+![[F60] Suspend invoice modal](/images/image29.png)
+
+*[F60] Suspend invoice modal*
+
+**6. Wait for the documents.** They arrive outside ClearTax. Once your supplier has sent them, they mark the invoice **Completed** in their own system, and it moves to that status on your side too.
+
+# 9.6 Refuse
+
+Refusing rejects the invoice permanently.
+
+| **WARNING This action is permanent and irreversible.** The refusal is reported to the PPF and your supplier is notified. There is no way back. |
+|----|
+
+![[F61] Refuse action from Actions Dropdown](/images/image30.png)
+
+*[F61] Refuse action from Actions Dropdown*
+
+## 9.6.1 How to Refuse
+
+**1. Select the invoice** in the list.
+
+**2. Open the Actions dropdown and choose Refuse.**
+
+**3. Choose a reason.** Five categories, each with a specific reason to pick from a dropdown.
+
+| **Category** | **Specific reasons** |
+|----|----|
+| **Errors in amounts and calculations** | Wrong total amount · Calculation error · Incorrect VAT rate · Wrong unit price · Wrong discount |
+| **Incorrect order details and quality issues** | Wrong or missing PO number · Wrong quantity · Wrong article · Defective quality · Delivery issue |
+| **Wrong references, identifiers or payment terms** | Missing contractual reference · Incorrect reference · Wrong or missing SIRET · Wrong bank details · Wrong routing code · Wrong billing address · Missing legal mention · Wrong payment terms |
+| **Unknown recipient or sender** | Wrong recipient · Unknown sender · Unknown transaction · Contract terminated |
+| **Duplicate** | Duplicate invoice · Already invoiced |
+
+**4. Explain why.** The comment is **required**.
+
+**5. Click Refuse.** The status changes to **Refused**, and the refusal is reported to the PPF.
+
+![[F61] Refuse invoice modal](/images/image16.png)
+
+*[F61] Refuse invoice modal*
+
+| **TIP Dispute first if you want the invoice fixed.** Refusing closes the document for good. If the problem is correctable, a dispute leaves your supplier a route to put it right. |
+|----|
+
+# 9.7 What happens next
+
+Approving closes the matter. The other three decisions leave the invoice open, and something comes back to you. There are four cases.
+
+| **Case** | **Where you left it** | **What came back** |
+|----|----|----|
+| **1** | Suspended | Your supplier sent the documents and marked it **Completed** |
+| **2** | Disputed | A **corrective invoice** arrived |
+| **3** | Disputed | A **credit note** arrived |
+| **4** | Disputed | Nothing has come back |
+
+| **NOTE These are the flows the French specification advises, but what actually reaches you depends on the counterparty's platform.** Not every PA implements every lifecycle event, and some may respond differently or not at all. Treat the cases below as what you should normally expect rather than a guarantee - and where nothing comes back, Case 4 tells you how to close the document yourself. |
+|----|
+
+## 9.7.1 Case 1 - You suspended, and your supplier responded
+
+**What happened.** Your supplier sent the documents you asked for, outside ClearTax, then marked the invoice **Completed**. It now sits at Completed on your list.
+
+| **WARNING Completed does not mean settled.** It means your supplier has responded. The invoice waits at Completed until you act on it again. |
+|----|
+
+**What to do**
+
+**1. Check the documents your supplier sent.** They arrived outside ClearTax - by email or however you normally correspond.
+
+**2. Reopen the invoice** in ClearTax and review it against what they sent.
+
+**3. Decide.**
+
+| **Option** | **When** |
+|----|----|
+| **Approve** | The documents answered your question and the invoice is correct |
+| **Dispute** | The documents did not resolve it, or revealed a genuine problem |
+
+| **TIP You do not have to wait.** From **Suspended** you can approve or refuse the invoice at any point, if you decide you no longer need the documents. |
+|----|
+
+## 9.7.2 Case 2 - You disputed, and a corrective invoice arrived
+
+**What happened.** Your supplier accepted the problem and issued a **corrective invoice**, which replaces the one you disputed.
+
+**Two things change on your list at once:**
+
+- The **original** is marked **Cancelled** and closes. You do not act on it again.
+
+- The **corrective** appears as a **new document** at **Made Available**, with its own lifecycle from the beginning.
+
+**What to do**
+
+**1. Find the new document.** It arrives at Made Available like any other invoice.
+
+**2. Check it against your dispute.** Confirm your supplier corrected what you actually raised.
+
+**3. Review it as a new invoice.** Acknowledge, approve, dispute, suspend or refuse - the full set of actions is available again.
+
+**4. Leave the original alone.** It is Cancelled and terminal.
+
+| **NOTE One decision, not two.** Only the corrective needs acting on. The cancelled original is closed. |
+|----|
+
+## 9.7.3 Case 3 - You disputed, and a credit note arrived
+
+**What happened.** Your supplier issued a **credit note**, which adjusts the invoice rather than replacing it.
+
+**This is the important difference:**
+
+- The **original stays active**. It is *not* cancelled.
+
+- The **credit note** appears as a **separate document** at **Made Available**.
+
+- **Both documents need your decision.**
+
+| **WARNING This is the case people get wrong.** You now have two live documents. Approving the credit note does not settle the original invoice, and approving the invoice does not settle the credit note. |
+|----|
+
+**What to do**
+
+**1. Find the credit note.** It arrives at Made Available as a new document.
+
+**2. Check the adjustment.** Confirm the credit covers what you disputed.
+
+**3. Act on the credit note.** Approve it if the adjustment is right.
+
+**4. Act on the original invoice too.** In the straightforward case you approve it as well - the invoice for what was correct, the credit note for the adjustment.
+
+| **TIP Check both are settled before you close the matter.** A credit note approved against an invoice still sitting at Disputed leaves the transaction half-resolved. |
+|----|
+
+## 9.7.4 Case 4 - You disputed, and nothing has come back
+
+**What happened.** Your supplier has not resolved the dispute, or you have settled the matter another way.
+
+A dispute does not lock the invoice. You can still act on it directly.
+
+**What to do**
+
+**1. Decide whether you still need a correction.** If you have settled it commercially, the document still needs closing in ClearTax.
+
+**2. Act.**
+
+| **Option** | **Effect** |
+|----|----|
+| **Approve** | Closes out the dispute and accepts the invoice as issued |
+| **Refuse** | Rejects the invoice permanently and reports the refusal to the PPF |
+
+## 9.7.5 Corrective invoice or credit note - telling them apart
+
+|  | **Corrective invoice** | **Credit note** |
+|----|----|----|
+| **What happens to the original** | Marked **Cancelled** | Stays active |
+| **How many documents you act on** | One - the corrective | Two - the original and the credit note |
+| **Where it appears** | New document at Made Available | New document at Made Available |
+| **Your supplier uses it when** | The invoice was wrong and should be replaced | The invoice stands, but an adjustment is needed |
+
+| **TIP Check the original's status to tell which you have received.** If it flipped to **Cancelled**, your supplier sent a corrective invoice. If it is still active, they sent a credit note and both documents are yours to settle. |
+|----|
